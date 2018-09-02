@@ -1,5 +1,10 @@
-FROM ubuntu:16.04
-MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
+ARG BASE=alpine
+FROM $BASE
+
+ARG arch=none
+ENV ARCH=$arch
+
+COPY qemu/qemu-$ARCH-static* /usr/bin/
 
 COPY . /container
 RUN /container/build.sh
